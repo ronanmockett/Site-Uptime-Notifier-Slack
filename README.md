@@ -1,5 +1,6 @@
 # Site-Uptime-Notifier
-A small script which will notify you on Slack if your site(s) go down.
+A small script which will notify you on Slack if your site(s) go down. 
+This script assumes you are calling the file via a Cron or task scheduling system.
 
 You can find really simple instructions below on how to setup your first Slack App and enable incoming webhooks.
 https://api.slack.com/messaging/webhooks
