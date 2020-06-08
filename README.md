@@ -9,7 +9,7 @@ You can preview a sample JSON file, you can either replace this file and update 
 
 Minimum PHP Version: 7 ( Can easily be adapted for lower versions )
 
-**SETUP** <br />
+**Setup** <br />
 ---
 1. Update **'ENTER_SLACK_APP_WEBHOOK_HERE'** in SiteUpdateNotifier.php, line 13 with your webhook url.
 2. Rewrite or replace the example json with your own json file, following the sample schema.
