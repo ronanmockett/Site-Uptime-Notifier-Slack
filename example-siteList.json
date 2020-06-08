@@ -1,0 +1,26 @@
+[
+	{
+		"name": "Site Name 1",
+		"url": "https://www.site-name-1.co.uk/",
+		"enabled": true,
+		"currentStatus": "active",
+		"failed_timestamp": null,
+		"channel_webhook": "OPTIONAL - Enter an additional webhook if you want notifications for this site to go into another channel. This should be set to `null` if not."
+	},
+	{
+		"name": "Site Name 2",
+		"url": "https://www.site-name-2.com/",
+		"enabled": true,
+		"currentStatus": "active",
+		"failed_timestamp": null,
+		"channel_webhook": null
+	},
+	{
+		"name": "Site Name 3",
+		"url": "https://www.site-name-3.com/",
+		"enabled": false,
+		"currentStatus": "active",
+		"failed_timestamp": null,
+		"channel_webhook": null
+	}
+]
