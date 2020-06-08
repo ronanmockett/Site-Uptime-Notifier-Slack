@@ -2,6 +2,8 @@
 
 declare(strict_types = 1);
 
+namespace RonanMockett;
+
 class SiteUptimeNotifier {
 	private $file_path;
 	private $sites;
@@ -59,7 +61,7 @@ class SiteUptimeNotifier {
 		}
 	}
 
-	private function updateSiteData( int $index, stdClass $site, string $previousStatus, string $newStatus ) {
+	private function updateSiteData( int $index, \stdClass $site, string $previousStatus, string $newStatus ) {
 		$sites = $this->sites;
 
 		$sites[$index]->currentStatus = $newStatus;
@@ -97,7 +99,7 @@ class SiteUptimeNotifier {
 		return '*' . $time . '*';
 	}
 
-	private function report( stdClass $site, int $response_code, string $previousStatus, string $newStatus ) {
+	private function report( \stdClass $site, int $response_code, string $previousStatus, string $newStatus ) {
 		$webhook = $site->channel_webhook ?? $this->slack_webhook;
 
 		// If site was previously down but is now up then notify slack that it is back up and report downtime. 
