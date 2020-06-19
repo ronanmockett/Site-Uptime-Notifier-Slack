@@ -1,11 +1,12 @@
 # Site-Uptime-Notifier
-A small script which will notify you on Slack if your site(s) go down. 
+Notifies you on Slack if your site(s) go down. 
 This script assumes you are calling the file via a Cron or task scheduling system.
 
 You can find really simple instructions below on how to setup your first Slack App and enable incoming webhooks.
 https://api.slack.com/messaging/webhooks
 
-You can preview a sample JSON file, you can either replace this file and update the filePath in the php file or rewrite the example for your sites.
+I have provided a sample JSON file, you can either replace this file and update the $filePath in the php file or rewrite the example for your sites.
+You could also fetch this file from an external source, however you will need to update the 'file_put_contents' function with your own solution as this tool updates the file. 
 
 Minimum PHP Version: 7 ( Can easily be adapted for lower versions )
 
