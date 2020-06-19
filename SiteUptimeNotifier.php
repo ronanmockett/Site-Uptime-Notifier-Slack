@@ -18,14 +18,14 @@ class SiteUptimeNotifier {
 	private function getSiteStatus( string $url ) : int {
 		// create a new cURL resource
 		$ch = curl_init();
-
 		// set URL and other appropriate options
 		curl_setopt( $ch, CURLOPT_URL, $url );
-		curl_setopt( $ch, CURLOPT_FRESH_CONNECT, TRUE );
+		curl_setopt( $ch, CURLOPT_HEADER, TRUE );
 		curl_setopt( $ch, CURLOPT_HTTPHEADER, array("Cache-Control: no-cache") );
+		curl_setopt( $ch, CURLOPT_FRESH_CONNECT, TRUE );
+		curl_setopt( $ch, CURLOPT_NOBODY, TRUE );
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, TRUE );
-		curl_setopt( $ch, CURLOPT_TIMEOUT_MS, 5000 );
-
+		curl_setopt( $ch, CURLOPT_TIMEOUT_MS, 3500 );
 		# Send request
 		curl_exec( $ch );
 		$response_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
