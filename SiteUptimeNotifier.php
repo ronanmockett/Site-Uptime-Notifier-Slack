@@ -13,9 +13,38 @@ class SiteUptimeNotifier {
 		$this->file_path = './example-siteList.json';
 		$this->sites = json_decode( file_get_contents( $this->file_path ) );
 		$this->slack_webhook = 'ENTER_SLACK_APP_WEBHOOK_HERE';
+		$this->numberOfTests = 3;
 	}
 
 	private function getSiteStatus( string $url ) : int {
+		$response_code = $this->ping_url( $url );
+
+		// If response is not a success then test the url 2 more times. 
+		// If 2 of the 3 tests have failed then return the most recent failed response_code.
+		if ( $response_code !== 200 && $this->numberOfTests > 1 ) {
+			$successful_responses = $failed_responses = array();
+			$failed_responses[] = $response_code;
+
+			$maxTests = ceil($this->numberOfTests / 2); // More than half of the number of tests.
+			if ( $maxTests % 2 === 0 ); // If EVEN add 1;
+				$maxTests++;
+
+			do {
+				$response_codes[] = $response_code = $this->ping_url( $url );
+				$response_code === 200 
+					? $successful_responses[] = $response_code 
+					: $failed_responses[] = $response_code;
+			} while ( count($successful_responses) < $maxTests && count($failed_responses) < $maxTests );
+
+			$failed_count = count($failed_responses);
+
+			$response_code = ($failed_count < $maxTests) ? $successful_responses[0] : $failed_responses[$failed_count - 1];
+		}
+
+		return (int) $response_code;
+	}
+
+	private function ping_url( string $url ) : int {
 		// create a new cURL resource
 		$ch = curl_init();
 		// set URL and other appropriate options
